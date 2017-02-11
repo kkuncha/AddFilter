@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="./lib/angular.min.js"></script>
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/underscore.js"></script>
+
+<script src="addFilter.js"></script>
+</head>
+
+<body ng-app="myapp" ng-controller="CollapseDemoCtrl"  >
+        <div>
+            <div class="container" >Add Filter</div>
+			<div style="border: 5px solid red;" ng-init="selected = []">
+            <ul >
+                <li ng-repeat="element in savedFilter" >
+                        <div >
+                            <span >
+                               Create Filter :
+							   <input type="textbox" placeholder="enter values">
+
+							<!--<select ng-model="selected[$index]" ng-options="elemnt.colName as elemnt.colName for elemnt in columns| customFilter:selected:selected[$index]|orderBy:predicateCol" ng-change="update($index)"  >
+							</select> -->
+							<select ng-style="{'width':'205px'}" ng-model="selected[$index]" ng-init="selected[$index]=savedFilter[$index]"  ng-options="elemnt as elemnt for elemnt in columns| customFilter:selected:selected[$index]|orderBy:predicateCol" ng-change="update($index)"  >
+							</select>
+                            </span>
+
+						<button ng-click="removeItem($index)" ng-if="$index >= 1" >Remove</button>
+						<button ng-click="newItem($event,$index)" ng-if="savedFilter.length == $index+1 && savedFilter.length < columns.length">Add</button>
+                    </div>
+                </li>
+            </ul>
+			</div>
+        </div>
+
+		<button ng-click="saveFilter()" >SaveFilter</button>
+		<p>{{msg}}</p>
+		<button ng-click = "addFilter()"> addFilter</button>
+		<button
+		<!--<div ng-init="foos = [{label:'label 1',id:1},{label:'label 2',id:2},{label:'label 3',id:3}]; selected = []">
+  <div ng-repeat="foo in foos">
+    <select ng-model="selected[$index]" ng-options="obj.id as obj.label for obj in foos | customFilter:selected:selected[$index]"></select>
+  </div>
+</div> -->
+
+</body>
+</html>
+
